@@ -1,0 +1,785 @@
+/* =========================================
+   1. ΜΕΤΑΒΛΗΤΕΣ (ΧΡΩΜΑΤΑ & ΓΡΑΜΜΑΤΟΣΕΙΡΕΣ)
+   ========================================= */
+:root {
+    /* Βασικά Χρώματα βάσει του νέου design */
+    --color-primary: #1a56db;       /* Το έντονο μπλε για κουμπιά και εικονίδια */
+    --color-primary-hover: #1e40af; /* Λίγο πιο σκούρο μπλε για τα hover */
+    --color-dark: #0f172a;          /* Σκούρο μπλε/μαύρο για το Top Bar & Footer */
+    --color-text-main: #1f2937;     /* Σκούρο γκρι για τα βασικά κείμενα */
+    --color-text-muted: #6b7280;    /* Πιο ανοιχτό γκρι για υπότιτλους */
+    --color-bg-light: #f3f4f6;      /* Απαλό γκρι για φόντο ενοτήτων */
+    --color-white: #ffffff;
+}
+
+/* =========================================
+   2. RESET & ΒΑΣΙΚΟΙ ΚΑΝΟΝΕΣ
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--color-text-main);
+    line-height: 1.6;
+    background-color: var(--color-white);
+    /* Ομαλό scroll για όταν πατάμε τα links του μενού */
+    scroll-behavior: smooth; 
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* =========================================
+   3. REUSABLE COMPONENTS (ΚΟΙΝΑ ΣΤΟΙΧΕΙΑ)
+   ========================================= */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Το βασικό μπλε κουμπί */
+.btn-primary {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-primary i {
+    margin-right: 8px;
+    font-size: 1.1rem;
+    vertical-align: middle;
+}
+
+/* =========================================
+   4. TOP BAR (ΣΚΟΥΡΑ ΜΠΑΡΑ ΚΟΡΥΦΗΣ)
+   ========================================= */
+.top-bar {
+    background-color: var(--color-dark);
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    padding: 10px 0;
+}
+
+.top-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar-left i,
+.top-bar-right i {
+    margin-right: 6px;
+    color: #94a3b8;
+}
+
+.top-bar-right {
+    display: flex;
+    gap: 20px;
+}
+
+.top-bar-right a {
+    color: #cbd5e1;
+    transition: color 0.3s ease;
+}
+
+.top-bar-right a:hover {
+    color: var(--color-primary);
+}
+
+.top-bar-right a:hover i {
+    color: var(--color-primary);
+}
+
+/* =========================================
+   5. ΚΕΝΤΡΙΚΟ ΜΕΝΟΥ (HEADER)
+   ========================================= */
+.main-header {
+    background-color: var(--color-white);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 15px 0;
+}
+
+.nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Λογότυπο */
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    font-size: 2.8rem;
+    color: var(--color-primary);
+}
+
+.logo-text h1 {
+    font-size: 1.5rem;
+    color: var(--color-dark);
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+}
+
+.logo-text span {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+/* Πλοήγηση Desktop */
+.desktop-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.desktop-nav a {
+    color: var(--color-dark);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.desktop-nav a.active,
+.desktop-nav a:hover {
+    color: var(--color-primary);
+}
+
+.dropdown-arrow {
+    font-size: 0.75rem;
+    margin-left: 5px;
+    vertical-align: middle;
+    color: var(--color-text-muted);
+}
+
+/* =========================================
+   6. HERO SECTION
+   ========================================= */
+.hero {
+    /* Το linear-gradient βάζει ένα ημιδιάφανο σκούρο μπλε "πέπλο" πάνω από την εικόνα */
+    background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('../images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 140px 0; /* Δίνει ύψος στην ενότητα (κενό πάνω-κάτω) */
+    color: var(--color-white);
+}
+
+.hero-content {
+    /* Περιορίζουμε το πλάτος ώστε το κείμενο να μείνει στα αριστερά */
+    max-width: 650px; 
+}
+
+.hero-content h2 {
+    font-size: 3.2rem; /* Μεγάλη, επιβλητική γραμματοσειρά */
+    line-height: 1.2;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #e2e8f0; /* Ένα πολύ απαλό γκρι/λευκό για να μην κουράζει */
+    line-height: 1.6;
+}
+
+/* Συλλογή Κουμπιών */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap; /* Αν η οθόνη είναι μικρή, το δεύτερο κουμπί θα πέσει από κάτω */
+}
+
+/* Νέο Στυλ: Διάφανο κουμπί (Outline Button) */
+.btn-outline {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--color-white);
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-white);
+    cursor: pointer;
+}
+
+/* Όταν περνάει το ποντίκι, το κουμπί γεμίζει με λευκό και τα γράμματα γίνονται σκούρα */
+.btn-outline:hover {
+    background-color: var(--color-white);
+    color: var(--color-dark);
+}
+
+/* =========================================
+   7. ΕΝΟΤΗΤΑ ΥΠΗΡΕΣΙΩΝ (SERVICES)
+   ========================================= */
+.services {
+    padding: 80px 0;
+    background-color: var(--color-bg-light); /* Απαλό γκρι φόντο για να ξεχωρίζουν οι λευκές κάρτες */
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 2rem;
+    color: var(--color-dark);
+    font-weight: 700;
+}
+
+/* Η μικρή μπλε γραμμή κάτω από τον τίτλο (σύνηθες σε επαγγελματικά sites) */
+.title-underline {
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-primary);
+    margin: 15px auto 0;
+}
+
+/* --- Το Πλέγμα (CSS Grid) --- */
+.services-grid {
+    display: grid;
+    /* Για οθόνες υπολογιστή: 5 ίσες στήλες */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+/* --- Σχεδιασμός Κάρτας --- */
+.service-card {
+    background-color: var(--color-white);
+    padding: 30px 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+
+/* Εφέ στο Hover */
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid var(--color-primary);
+}
+
+.service-icon {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    font-size: 1.1rem;
+    color: var(--color-dark);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.service-card p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+/* =========================================
+   8. ΕΝΟΤΗΤΑ ΣΤΑΤΙΣΤΙΚΩΝ (STATS)
+   ========================================= */
+.stats {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    padding: 20px 0;
+}
+
+.stats-inner {
+    display: grid;
+    /* 4 ίσες στήλες στις μεγάλες οθόνες */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-icon {
+    font-size: 1.4rem;
+    color: var(--color-primary);
+    margin-bottom: 6px;
+}
+
+.stat-number {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.stat-text {
+    font-size: 0.75rem;
+    color: #cbd5e1; /* Απαλό γκρι/μπλε για να κάνει αντίθεση με τον λευκό αριθμό */
+}
+
+/* =========================================
+   9. ΕΝΟΤΗΤΑ ΕΡΓΩΝ (PROJECTS)
+   ========================================= */
+.projects {
+    padding: 80px 0;
+    background-color: var(--color-white);
+}
+
+.projects-grid {
+    display: grid;
+    /* 5 ίσες στήλες στις μεγάλες οθόνες, ακριβώς όπως στην εικόνα */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.project-card {
+    background-color: var(--color-bg-light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Προσωρινό κουτί για την εικόνα (έως ότου μπουν φωτογραφίες) */
+.project-img-placeholder {
+    height: 180px;
+    background-color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 2rem;
+}
+
+.project-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.project-info h3 {
+    font-size: 1rem;
+    color: var(--color-dark);
+    font-weight: 600;
+}
+
+/* Κουμπί "Δείτε περισσότερα έργα" */
+.projects-btn-wrapper {
+    text-align: center;
+}
+
+.btn-outline-dark {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--color-dark);
+    border: 2px solid var(--color-dark);
+    padding: 12px 30px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-dark:hover {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+}
+
+/* =========================================
+   10. ΕΝΟΤΗΤΑ ΣΧΕΤΙΚΑ ΜΕ ΕΜΑΣ (ABOUT)
+   ========================================= */
+.about {
+    padding: 80px 0;
+    background-color: var(--color-white);
+}
+
+.about-inner {
+    display: grid;
+    /* 2 ίσες στήλες: Εικόνα αριστερά, Κείμενο δεξιά */
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+/* Αριστερή πλευρά (Placeholder Εικόνας) */
+.about-img-placeholder {
+    height: 380px;
+    background-color: var(--color-bg-light);
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: var(--color-text-muted);
+    text-align: center;
+    padding: 20px;
+}
+
+.about-img-placeholder i {
+    font-size: 3.5rem;
+    color: var(--color-primary);
+}
+
+.about-img-placeholder span {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Δεξιά πλευρά (Τίτλος και κείμενο) */
+.section-title-left {
+    margin-bottom: 20px;
+}
+
+.section-title-left h2 {
+    font-size: 2rem;
+    color: var(--color-dark);
+    font-weight: 700;
+}
+
+.title-underline-left {
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-primary);
+    margin-top: 10px;
+}
+
+.about-lead {
+    font-size: 1.05rem;
+    color: var(--color-text-main);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Λίστα χαρακτηριστικών με τσεκάρισμα */
+.about-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.about-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.about-features i {
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    margin-top: 3px;
+}
+
+.about-features strong {
+    color: var(--color-dark);
+    display: block;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+}
+
+.about-features span {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* =========================================
+   11. MEGA FOOTER
+   ========================================= */
+.site-footer {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    padding: 60px 0 20px 0;
+}
+
+.footer-grid {
+    display: grid;
+    /* 3 ίσες στήλες στις μεγάλες οθόνες */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h3 {
+    font-size: 1.1rem;
+    color: var(--color-white);
+    margin-bottom: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+/* Στήλη 1: Λίστα Επικοινωνίας */
+.footer-contact-list {
+    list-style: none;
+}
+
+.footer-contact-list li {
+    margin-bottom: 15px;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-contact-list i {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+}
+
+/* Στήλη 2: Φόρμα Footer */
+.footer-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-row {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-form input,
+.footer-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 4px;
+    color: var(--color-white);
+    font-size: 0.9rem;
+    font-family: inherit;
+}
+
+.footer-form input:focus,
+.footer-form textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.footer-form textarea {
+    resize: vertical;
+}
+
+.footer-form button {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+/* Στήλη 3: Placeholder Χάρτη */
+.footer-map-placeholder {
+    height: 160px;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #94a3b8;
+    text-align: center;
+    padding: 0 15px;
+}
+
+.footer-map-placeholder i {
+    font-size: 2rem;
+    color: var(--color-primary);
+}
+
+.footer-map-placeholder span {
+    font-size: 0.85rem;
+}
+
+/* Copyright Bottom Bar */
+.footer-bottom {
+    border-top: 1px solid #1e293b;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.developer-credit {
+    font-weight: 600;
+    color: #cbd5e1;
+}
+
+/* =========================================
+   12. GOOGLE MAP STYLING
+   ========================================= */
+.footer-map-container {
+    width: 100%;
+    height: 160px; /* Το ίδιο ύψος που είχαμε και πριν */
+    border-radius: 4px;
+    overflow: hidden; /* Κόβει τις γωνίες για να ταιριάζει στο border-radius */
+    border: 1px solid #334155;
+}
+
+.footer-map-container iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* =========================================
+   13. RESPONSIVE MOBILE MENU & MEDIA STYLES
+   ========================================= */
+
+/* Στις μεγάλες οθόνες κρύβουμε το hamburger */
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--color-dark);
+    transition: all 0.3s ease;
+}
+
+/* Για μικρότερα laptop & tablets */
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 κάρτες ανά σειρά */
+    }
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .stats-inner {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+}
+
+@media (max-width: 968px) {
+    .hamburger {
+        display: block;
+    }
+
+    .desktop-nav {
+        position: absolute;
+        top: 100%;
+        left: -100%; 
+        flex-direction: column;
+        background-color: var(--color-white);
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        transition: 0.3s ease-in-out;
+        padding: 20px 0;
+    }
+
+    /* Η κλάση που προσθέτει η Javascript όταν πατάμε το κουμπί */
+    .desktop-nav.active {
+        left: 0; /* Το φέρνει μέσα στην οθόνη */
+    }
+
+    .desktop-nav ul {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* Για μεγάλα κινητά & μικρά tablets */
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 κάρτες ανά σειρά */
+    }
+    .projects-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .footer-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    .about-inner {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .about-img-placeholder {
+        height: 250px;
+    }
+}
+
+/* Για μικρά κινητά */
+@media (max-width: 480px) {
+    .services-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 κάρτα ανά σειρά */
+    }
+    .stats-inner {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .hero-content h2 {
+        font-size: 2.3rem;
+    }
+}
+
+/* =========================================
+   LOGO IMAGE STYLING
+   ========================================= */
+.logo-img {
+    height: 45px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
